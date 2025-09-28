@@ -1,0 +1,28 @@
+{
+  "name": "kristoffer",
+  "email": "kristoffer@example.com",
+  "avatar": "https://i.pravatar.cc/150?img=3",
+  "banner": "https://images.unsplash.com/photo-1504215680853-026ed2a45def",
+  "bio": "Adventure rider & blogger 🏍️ Sharing stories from the road!",
+  "followers": [
+    {
+      "name": "motorfan99",
+      "avatar": "https://i.pravatar.cc/150?img=8"
+    },
+    {
+      "name": "roadtrip_lover",
+      "avatar": "https://i.pravatar.cc/150?img=12"
+    }
+  ],
+  "following": [
+    {
+      "name": "offroadking",
+      "avatar": "https://i.pravatar.cc/150?img=15"
+    }
+  ],
+  "_count": {
+    "posts": 3,
+    "followers": 2,
+    "following": 1
+  }
+}

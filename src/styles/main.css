@@ -1,0 +1,410 @@
+:root {
+  --bg: #0d0d0d;
+  --panel: #1a1a1a;      
+  --accent: #ff6600;      
+  --text: #f0f0f0;        
+  --muted: #aaaaaa;       
+  --radius: 12px;
+  --transition: 0.3s ease;
+
+  --avatar-size: 140px;
+  --avatar-border: 4px;
+
+
+  --page-max: 1200px;
+  --page-pad: 24px;
+}
+
+/* ===== Base / reset ===== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+#app { padding: 20px; }
+#content { min-height: calc(100vh - 40px); }
+.muted { color: var(--muted); }
+
+/* ===== Buttons ===== */
+.action-btn {
+  display: inline-block;
+  padding: 12px 16px;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter var(--transition), transform var(--transition);
+  min-height: 44px; 
+}
+.action-btn:hover { filter: brightness(.92); transform: translateY(-1px); }
+
+
+.link-btn {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  font: inherit;
+  min-height: 32px;
+}
+.link-btn:hover { color: #fff; }
+
+/* ===== Landing ===== */
+.landing-hero {
+  position: relative;
+  min-height: calc(100vh - 40px);
+  display: grid;
+  grid-template-columns: 1.2fr 420px;
+  gap: 28px;
+  align-items: center;
+  padding: 16px 0;
+  width: min(var(--page-max), 100% - (2 * var(--page-pad)));
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+}
+.landing-hero::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.65), rgba(38,29,8,.65)),
+    url("../assets/hero-mock.jpg") center/cover no-repeat;
+  background-color: #0f0f0f; 
+  z-index: -1;
+}
+
+
+.pitch { max-width: 720px; }
+.pitch h1 {
+  margin: 0 0 10px;
+  font-size: clamp(26px, 3.2vw, 40px);
+}
+.pitch p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(14px, 1.4vw, 18px);
+}
+
+
+.login-panel {
+  background: rgba(17,17,17,.92);
+  border: 1px solid #262626;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  backdrop-filter: blur(2px);
+}
+.login-panel h2 { margin: 0 0 12px; font-size: 1.25rem; }
+.login-panel form { display: grid; gap: 10px; }
+.login-panel label { display: grid; gap: 6px; color: var(--muted); font-size: .95rem; }
+.login-panel input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #0f0f0f;
+  color: var(--text);
+}
+.login-actions { display: grid; gap: 8px; margin-top: 6px; }
+
+
+.login-primary {
+  display: inline-block;
+  padding: 12px 16px;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter var(--transition), transform var(--transition);
+  min-height: 44px;
+}
+.login-primary:hover { filter: brightness(.92); transform: translateY(-1px); }
+
+.login-secondary {
+  background: transparent;
+  border: 1px solid #333;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+
+.app {
+  width: min(var(--page-max), 100% - (2 * var(--page-pad)));
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+}
+
+/* center the top header and tabs */
+.app-header{
+  /* center the whole block in the page */
+  width: fit-content;                 /* shrink to content width */
+  margin: 8px auto 18px;
+
+  /* place avatar + text next to each other */
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto auto;   /* avatar + text */
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+
+  /* text should align to the avatar, not center of page */
+  text-align: left;
+}
+
+/* don’t center the avatar by itself anymore */
+.app-avatar{
+  margin: 0;                          /* was margin-inline:auto; */
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+
+/* limit line length of the heading+bio so it doesn’t push too far right */
+.app-header > div{
+  max-width: 680px;                   /* adjust if you want shorter/longer */
+}
+
+/* keep your existing heading sizes */
+.app-header h1{
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1;
+  margin: 0 0 4px;
+}
+
+/* Tabs */
+.app-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;
+  justify-content: center;      /* center tabs line */
+}
+.tab {
+  background: transparent;
+  border: 1px solid #333;
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 44px;             /* touch target */
+}
+.tab:hover { background: #151515; }
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(255,102,0,.25) inset;
+}
+.tab.danger { border-color: #572222; }
+.tab.danger:hover { background: #2a1414; }
+
+/* ===== Feed & posts ===== */
+/* keep feed as a centered readable column */
+.feed {
+  display: grid; gap: 16px;
+  width: min(900px, 100%);
+  margin-inline: auto;
+}
+.post-card {
+  background: #111;
+  border: 1px solid #262626;
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.post-header {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.post-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2b2b2b;
+}
+.post-author { font-weight: 700; font-size: 1.05rem; }
+.post-meta   { font-size: .95rem; }
+.post-meta .link-btn { border-radius: 6px; padding: 2px 6px; text-decoration: none; }
+.post-meta .link-btn:hover { background: rgba(255,255,255,.06); }
+.post-body h3 { margin: 6px 0 8px; font-size: 1.25rem; }
+.post-body p  { margin: 0; font-size: 1rem; }
+.post-media { margin-top: 10px; border-radius: 10px; overflow: hidden; }
+.post-media img { width: 100%; display: block; }
+
+/* ===== Create / Profile / Search columns stay centered ===== */
+.create-form,
+.profile-card,
+.search { margin-inline: auto; }
+
+/* ===== Create form ===== */
+.create-form { display: grid; gap: 10px; max-width: 720px; }
+.create-form label { display: grid; gap: 6px; color: var(--muted); }
+.create-form input,
+.create-form textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #0f0f0f;
+  color: var(--text);
+}
+
+/* ===== Profile card ===== */
+.profile-card {
+  background: #111;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  padding: 16px;
+  max-width: 720px;
+  text-align: center;
+}
+.profile-card .profile-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent);
+  box-shadow: 0 2px 10px rgba(0,0,0,.35);
+  margin-bottom: 8px;
+}
+.stats { display: flex; gap: 20px; justify-content: center; margin-top: 10px; }
+.stats div { display: grid; gap: 4px; text-align: center; }
+.stats span { color: var(--muted); font-size: .9rem; }
+
+/* ===== Search ===== */
+.search { display: grid; gap: 10px; max-width: 720px; }
+.search input {
+  height: 44px;
+  font-size: 1rem;
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid #333;
+  background: #0f0f0f;
+  color: var(--text);
+}
+
+/* ===== Modals ===== */
+#modal-host { position: fixed; inset: 0; z-index: 2000; pointer-events: none; }
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: all;
+}
+.modal {
+  width: min(760px, 92vw);
+  max-height: 86vh;
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 60px rgba(0,0,0,.6);
+  display: flex; flex-direction: column;
+}
+.modal.small { width: 420px; }
+.modal-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #2a2a2a;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* Comments list */
+.comments-list { padding: 12px 16px; overflow: auto; display: grid; gap: 12px; }
+.comment-row { display: grid; grid-template-columns: 40px 1fr; gap: 10px; }
+.comment-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.comment-bubble { background:#101010; border:1px solid #2a2a2a; border-radius: 10px; padding: 10px 12px; }
+.comment-meta { font-size: 12px; margin-bottom: 4px; }
+.comment-text { white-space: pre-wrap; }
+
+/* Add-comment form */
+.comment-form {
+  padding: 12px 16px;
+  border-top: 1px solid #2a2a2a;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: end;
+}
+.comment-form textarea {
+  min-height: 48px; resize: vertical;
+  background: #0d0d0d; color: var(--text);
+  border: 1px solid #333; border-radius: 8px; padding: 10px 12px;
+}
+
+/* Reactions */
+.react-grid { padding: 18px; display: flex; gap: 12px; justify-content: center; }
+.react-btn {
+  font-size: 26px; line-height: 1;
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 0; cursor: pointer;
+  background: #222; color: #fff;
+}
+.react-btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+/* ===== Center layouts ===== */
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  /* stack hero */
+  .landing-hero {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    justify-items: center;
+    text-align: center;
+  }
+  .pitch { max-width: 620px; }
+  .login-panel { width: min(100%, 480px); }
+
+  /* smaller header avatar & type */
+  .app-avatar { width: 96px; height: 96px; border-width: 3px; }
+  .app-header h1 { font-size: clamp(28px, 7vw, 44px); }
+
+  /* posts more compact */
+  .post-header { grid-template-columns: 48px 1fr; gap: 12px; }
+  .post-avatar { width: 48px; height: 48px; border-width: 2px; }
+  .post-card { padding: 16px; }
+  .post-body h3 { font-size: 1.15rem; }
+  .post-meta { font-size: .9rem; }
+
+  /* tabs comfy on mobile */
+  .app-tabs { gap: 10px; }
+  .tab { padding: 10px 14px; font-size: .95rem; }
+}
+
+@media (max-width: 600px) {
+  :root { --page-pad: 16px; }
+
+  .app-header { gap: 12px; }
+  .app-avatar { width: 84px; height: 84px; }
+  .app-header h1 { font-size: clamp(24px, 8vw, 36px); }
+
+  .feed { width: 100%; }
+  .post-card { padding: 14px; }
+  .post-body h3 { font-size: 1.1rem; }
+  .post-meta { font-size: .875rem; }
+
+  .profile-card { padding: 14px; }
+  .profile-card .profile-avatar { width: 120px; height: 120px; border-width: 3px; }
+
+  .search input { height: 42px; font-size: .95rem; }
+}
+
+@media (max-width: 360px) {
+  :root { --page-pad: 12px; }
+  .tab { padding: 8px 12px; border-radius: 10px; }
+  .action-btn, .login-primary { padding: 10px 12px; border-radius: 10px; }
+}
